@@ -20,5 +20,24 @@ namespace Auth.API.Controllers
             var loginResult = _jwtTokenService.GetAuthToken(user);
             return loginResult is null ? Unauthorized(): Ok(loginResult);
         }
+
+        [HttpPost]
+        [Route("Refreshtoken")]
+        public IActionResult Refresh(Authentication tokenApiData) {
+            string accessToken = tokenApiData.Token;
+            string refreshToken = tokenApiData.RefreshToken;
+
+            var principal = _jwtTokenService.GetPrincipalFromExpiredToken(accessToken);
+            var newAccessToken = _jwtTokenService.AuthToken(principal.Claims);
+            var newRefreshToken = _jwtTokenService.GenerateRefreshToken();
+            // logic to update the token
+
+            return Ok(new Authentication()
+            {
+                Token = newAccessToken,
+                RefreshToken = newRefreshToken
+            });
+
+        }
     }
 }

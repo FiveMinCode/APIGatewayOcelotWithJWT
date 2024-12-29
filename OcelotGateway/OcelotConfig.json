@@ -1,16 +1,16 @@
 {
   "Routes": [
     {
-      "UpstreamPathTemplate": "/Authentication",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "https",
-      "DownstreamPathTemplate": "/api/Authentication",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7106
-        }
-      ]
+        "UpstreamPathTemplate": "/Authentication/{everything}",
+        "UpstreamHttpMethod": [ "Post" ],
+        "DownstreamScheme": "https",
+        "DownstreamPathTemplate": "/api/Authentication/{everything}",
+        "DownstreamHostAndPorts": [
+            {
+                "Host": "localhost",
+                "Port": 7106
+            }
+        ]
     },
     {
       "UpstreamPathTemplate": "/products",

@@ -20,10 +20,13 @@ namespace Auth.Shared
                 {
                     ValidateIssuer = true,
                     ValidIssuer = "https://localhost:7106",
-                    ValidateAudience = false,
+                    ValidAudience= "https://localhost:7106",
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-                    .GetBytes("a1b2c3d4e5f67890abcdef1234567890a1b2c3d4e5f67890abcdef1234567890"))
+                    .GetBytes("a1b2c3d4e5f67890abcdef1234567890a1b2c3d4e5f67890abcdef1234567890")),
+                    ClockSkew = TimeSpan.Zero
                 };
             });
         }

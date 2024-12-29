@@ -15,10 +15,19 @@ namespace OcelotGateway
 
             builder.Services.AddOcelot(builder.Configuration);
             builder.Services.AddJwtAuthentication();
+            builder.Services.AddCors();
 
             var app = builder.Build();
+            app.UseCors(option => option
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithExposedHeaders("Content-Dispostion"));
 
-            app.UseOcelot();
+            app.UseCors(option => option.AllowCredentials());
+
+
+           app.UseOcelot();
 
             app.UseAuthentication();
             app.UseAuthorization();
